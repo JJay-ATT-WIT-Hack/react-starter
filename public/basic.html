@@ -4,11 +4,14 @@
 		<title> </title>
 	</head>
 	<body onLoad="getLocation()" onLoad="showPosition()">
+		
 		Your Location is:
 		<p id="demo"> </p>
-
+		<div id = "out"> </div>
+		
 		<script>
 			var x = document.getElementById("demo");
+			 var output = document.getElementById("out");
 
 			function getLocation() 
 			{
@@ -24,15 +27,15 @@
 
 			function showPosition(position) 
 			{
-				x.innerHTML = "Latitude: " + position.coords.latitude + 
-				"<br>Longitude: " + position.coords.longitude;	
+				x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;	
 				
 				var img = new Image();
 				
-    			img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+    			img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + position.coords.latitude + "," + position.coords.longitude + "&zoom=13&size=300x300&sensor=false";
 				
 				output.appendChild(img);
 			};
+			
 			
 			navigator.geolocation.getCurrentPosition(showPosition);
 			
