@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> </title>
+	</head>
+	<body onLoad="getLocation()" onLoad="showPosition()">
+		Your Location is:
+		<p id="demo"> </p>
+
+		<script>
+			var x = document.getElementById("demo");
+
+			function getLocation() 
+			{
+				if (navigator.geolocation) 
+				{
+					navigator.geolocation.getCurrentPosition(showPosition);
+				} 
+				else 
+				{ 
+					x.innerHTML = "Geolocation is not supported by this browser.";
+				}
+			};
+
+			function showPosition(position) 
+			{
+				x.innerHTML = "Latitude: " + position.coords.latitude + 
+				"<br>Longitude: " + position.coords.longitude;	
+				
+				var img = new Image();
+				
+    			img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+				
+				output.appendChild(img);
+			};
+			
+			navigator.geolocation.getCurrentPosition(showPosition);
+			
+		</script>
+	</body>
+</html>
